@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Taschenrechner</title>
+    <link rel="stylesheet" href="taschenrechner.css">
+    <!--<link rel="manifest" href="manifest.webmanifest">-->
+    <script defer src="calculator.js"></script>
+</head>
+<body>
+    <div id="main">
+    <div id="settingsBox">
+        <input type="button" id="closeBox" onclick="hideAlertBox()" value="X">
+        <input type="checkbox" id="checkbox" name="checkbox" onclick="strip()">
+        <label for="checkbox">Leiste für weitere Funktionalitäten anzeigen</label><br>
+        <button id="mode" onclick="darkmodeDaymode()">Hell</button><br>
+        <details>
+            <summary class="hover">Variable hinzufügen &#10133;</summary>
+            <input type="text" id="variablenname" placeholder="Varibalenname"><br>
+            <input type="text" id="variablenwert" placeholder="Variablenwert"><br>
+            <button id="submitVariable" onclick="addVariable()">Erstellen</button>
+        </details>
+        <br><a href="adeo.js">Quellcode inspizieren</a>
+        <center><p id="alternativeAlert"></p></center>
+    </div>
+    <div id="backCanvas"></div>
+    <div id="strip">
+        <button id="pi" onclick="appendOperation(Math.PI)">&pi;</button>
+    </div>
+    <button id="settings" onclick="showAlertBox()">&#9881;&#65039;</button>
+    <div id="resultArea"></div>
+    <table>
+        <tr>
+            <td>
+                <table class="special">
+                    <tr>
+                        <td class="qwerti" onclick="appendOperation('(')">(</td>
+                        <td class="qwerti" onclick="appendOperation(')')">)</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table class="special">
+                    <tr>
+                        <td class="qwerti" onclick="showSquare()">x<sup>&#9633;</sup></td>
+                        <td class="qwerti" onclick="appendOperation('sqrt')">√</td>
+                    </tr>
+                </table>
+            </td>
+            <td onclick="log()">log</td>
+            <td>
+                <table class="special">
+                    <tr>
+                        <td class="qwerti" onclick="deleteAll()">C</td>
+                        <td class="qwerti" onclick="deleteLast()">DEL</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td onclick="appendOperation(7)">7</td>
+            <td onclick="appendOperation(8)">8</td>
+            <td onclick="appendOperation(9)">9</td>
+            <td onclick="appendOperation(' ÷ ')" class="highlight">&#10135;</td>
+        </tr>
+        <tr>
+            <td onclick="appendOperation(4)">4</td>
+            <td onclick="appendOperation(5)">5</td>
+            <td onclick="appendOperation(6)">6</td>
+            <td onclick="appendOperation(' x ')" class="highlight">&#10006;&#65039;</td>
+        </tr>
+        <tr>
+            <td onclick="appendOperation(1)">1</td>
+            <td onclick="appendOperation(2)">2</td>
+            <td onclick="appendOperation(3)">3</td>
+            <td onclick="appendOperation(' + ')" class="highlight">&#10133;</td>
+        </tr>
+        <tr>
+            <td onclick="appendOperation(0)">0</td>
+            <td>
+                <table class="special">
+                    <tr id="qwert">
+                        <td onclick="appendOperation(',')">,</td>
+                        <td onclick="ans()">Ans</td>
+                    </tr>
+                </table>
+            </td>
+            <td onclick="calculateResult()" id="result">=</td>
+            <td onclick="appendOperation(' - ')" class="highlight">&#10134;</td>
+        </tr>
+    </table>
+    </div>
+    <div id="errPopup">
+        <p>
+            Ein Fehler ist aufgetreten, da die Syntax ungültig ist. Bitte überprüfen Sie ihre Eingabe auf ungültige Operatoren.
+        </p>
+        <button id="acceptErr">Okay</button>
+    </div>
+    <div id="errBg"></div>
+</body>
+</html>
