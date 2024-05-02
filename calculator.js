@@ -67,7 +67,7 @@ function showSquare() {
 }
 
 function calculateSquare() {
-    let squareBasis = document.getElementById("sqaureBasis");
+    let squareBasis = document.getElementById("squareBasis");
     let exponent = document.getElementById("exponent");
     let result = Math.pow(Number(squareBasis.value), Number(exponent.value));
     resultArea.innerHTML = result;
